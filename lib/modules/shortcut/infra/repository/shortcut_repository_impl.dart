@@ -19,19 +19,25 @@ class ShortcutRepositoryImpl implements ShortcutRepository {
   @override
   Future<Either<ErrorBase, ShortcutModel>> create(ShortcutModel shortcut) async {
     var config = await _getConfigUsecase();
-    var filePath =
-        '${config.steamPath}/userdata/${config.steamUserId}/config/shortcuts.vdf';
-    var shortcutsResult = await getAll();
+    var filePath = '${config.steamPath}/userdata/${config.steamUserId}/config/shortcuts.vdf';
+    var exists = await File(filePath).exists();
 
+    if(!exists) {
+      await File(filePath).create(recursive: true);
+      await _writeShortcuts(filePath, []);
+    }
+
+    var shortcutsResult = await getAll();
     return shortcutsResult.fold(
       (error) => Left(error),
       (shortcuts) {
+        if(shortcut.appId == 0) {
+          shortcut.appId = generateAppId(shortcut.exe, shortcut.appName);
+        }
         if (shortcuts.any((sc) => sc.appId == shortcut.appId)) {
           return Left(ErrorAlreadyExists(
               "Shortcut with the same appId already exists"));
         }
-
-        shortcut.appId = _generateAppId(shortcut.exe, shortcut.startDir);
         shortcuts.add(shortcut);
         _writeShortcuts(filePath, shortcuts);
         
@@ -385,10 +391,11 @@ class ShortcutRepositoryImpl implements ShortcutRepository {
   }
 
   
-  static int _generateAppId(String exe, String startDir) {
-    final key = utf8.encode('$exe|$startDir');
-    final crc = _computeCrc32(Uint8List.fromList(key));
-    return crc & 0xFFFFFFFF;
+  static int generateAppId(String exe, String appName) {
+    final key = utf8.encode('$exe$appName');
+    final hash = _computeCrc32(key);
+    var top = (hash | 0x80000000) & 0xFFFFFFFF;
+    return top | 0x02000000;
   }
 
   // Compute CRC32 (compatible with common CRC32/IEEE 802.3, polynomial 0xEDB88320)
