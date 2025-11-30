@@ -86,7 +86,11 @@ class GameRepositoryImpl implements GameRepository {
     var contents = await file.readAsString();
     try {
       final List<dynamic> jsonList = contents.isNotEmpty ? (jsonDecode(contents) as List<dynamic>) : [];
-      return jsonList.map((e) => GameModel.fromJson(jsonEncode(e))).toList();
+      return jsonList.map((e) {
+        final gm = GameModel();
+        gm.mergeFromProto3Json(e);
+        return gm;
+      }).toList();
     } catch (e) {
       return [];
     }
@@ -94,7 +98,7 @@ class GameRepositoryImpl implements GameRepository {
 
   static Future<void> _writeToFile(String path, List<GameModel> games) async {
     var file = File(path);
-    var jsonList = games.map((g) => jsonDecode(g.writeToJson())).toList();
+    var jsonList = games.map((g) => g.toProto3Json()).toList();
     await file.writeAsString(jsonEncode(jsonList));
   }
 }

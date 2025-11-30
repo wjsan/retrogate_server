@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:convert';
 
 import 'package:retrogate_server/core/errors/error_base.dart';
 import 'package:retrogate_server/core/errors/errors.dart';
@@ -33,13 +34,16 @@ class ConfigRepositoryImpl implements ConfigRepository {
   static Future<ConfigModel> _readConfigFromFile(String path) async {
     var file = File(path);
     var contents = await file.readAsString();
-    var config = ConfigModel.fromJson(contents);
+    if (contents.isEmpty) return ConfigModel();
+    final jsonObj = jsonDecode(contents);
+    final config = ConfigModel();
+    config.mergeFromProto3Json(jsonObj);
     return config;
   }
 
   static Future<void> _writeConfigToFile(String path, ConfigModel config) async {
    var file = File(path);
-    var contents = config.writeToJson();
-    await file.writeAsString(contents);
+    final jsonObj = config.toProto3Json();
+    await file.writeAsString(jsonEncode(jsonObj));
   }
 }
