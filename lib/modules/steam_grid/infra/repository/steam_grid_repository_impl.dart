@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:convert';
 
 import 'package:fpdart/fpdart.dart';
 import 'package:retrogate_server/core/errors/error_base.dart';
@@ -10,6 +11,8 @@ import 'package:http/http.dart' as http;
 
 class SteamGridRepositoryImpl implements SteamGridRepository {
   final GetConfigUsecase _getConfigUsecase;
+  
+  static const _steamGridDbApiUrl = 'https://www.steamgriddb.com/api/v2';
 
   SteamGridRepositoryImpl(this._getConfigUsecase);
 
@@ -139,8 +142,47 @@ class SteamGridRepositoryImpl implements SteamGridRepository {
   
   @override
   Future<Either<ErrorBase, List<SteamGridModel>>> searchByGameName(String gameName) async {
+    var seatchGameIdsResult = await _searchGameIdsByName(gameName);
+    if(seatchGameIdsResult.isLeft()) {
+      return Future.value(Left(seatchGameIdsResult.getLeft().toNullable()!));
+    }
+
+    var steamGridList = <SteamGridModel>[];
+    var gameIds = seatchGameIdsResult.getRight().toNullable()!;
+    for (var gameId in gameIds) {
+      var steamGrid = SteamGridModel(
+        id: gameId
+      );
+
+      var gridsUrlResult = await _getImageUrlsById(gameId, 'grids');
+      if(gridsUrlResult.isRight()) {
+        steamGrid.posterUrl = gridsUrlResult.getRight().toNullable()!;
+      }
+
+      var heroesUrlResult = await _getImageUrlsById(gameId, 'heroes');
+      if(heroesUrlResult.isRight()) {
+        steamGrid.heroUrl = heroesUrlResult.getRight().toNullable()!;
+      }
+
+      var logosUrlResult = await _getImageUrlsById(gameId, 'logos');
+      if(logosUrlResult.isRight()) {
+        steamGrid.logoUrl = logosUrlResult.getRight().toNullable()!;
+      }
+
+      var iconsUrlResult = await _getImageUrlsById(gameId, 'icons');
+      if(iconsUrlResult.isRight()) {
+        steamGrid.iconUrl = iconsUrlResult.getRight().toNullable()!;
+      }
+
+      steamGridList.add(steamGrid);
+    }
+
+    return Future.value(Right(steamGridList));
+  }
+
+  Future<Either<ErrorBase, List<String>>> _searchGameIdsByName(String gameName) async {
     var config = await _getConfigUsecase();
-    var steamGridDbApiUrl = 'https://www.steamgriddb.com/api/v2/grids/search';
+    var endpoint = '$_steamGridDbApiUrl/search/autocomplete/$gameName';
     var apiKey = config.steamGridDbApiKey;
 
     if(apiKey.isEmpty) {
@@ -148,20 +190,91 @@ class SteamGridRepositoryImpl implements SteamGridRepository {
     }
 
     var response = await http.get(
-      Uri.parse('$steamGridDbApiUrl?term=$gameName'),
+      Uri.parse(endpoint),
       headers: {
-        'Authorization': apiKey,
+        'Authorization': 'Bearer $apiKey',
       },
     );
 
     if (response.statusCode == 200) {
-      // Parse the response and create a list of SteamGridModel
-      // This is a placeholder implementation; actual parsing logic will depend on the API response format
-      List<SteamGridModel> steamGrids = []; // Populate this list based on the response
+      try {
+        final Map<String, dynamic> body = jsonDecode(response.body) as Map<String, dynamic>;
+        final success = body['success'] == true;
+        if (!success) {
+          return Future.value(Left(ErrorHttpRequest('SteamGridDB returned unsuccessful response', response.statusCode)));
+        }
 
-      return Future.value(Right(steamGrids));
+        final data = body['data'];
+        if (data is! List) {
+          return Future.value(Left(ErrorHttpRequest('Unexpected SteamGridDB response format', response.statusCode)));
+        }
+
+        final List<String> gameIds = [];
+        for (final item in data) {
+          if (item is Map<String, dynamic> && item['id'] != null) {
+            gameIds.add(item['id'].toString());
+          }
+        }
+
+        return Future.value(Right(gameIds));
+      } catch (e) {
+        return Future.value(Left(ErrorHttpRequest('Failed to parse SteamGridDB response: $e', response.statusCode)));
+      }
     } else {
-      return Future.value(Left(ErrorHttpRequest('Failed to search SteamGrids: ${response.body}', response.statusCode)));
+      return Future.value(Left(ErrorHttpRequest('Failed to search games: ${response.body}', response.statusCode)));
+    }
+  }
+
+  Future<Either<ErrorBase, String>> _getImageUrlsById(String id, String imageType) async {
+    var config = await _getConfigUsecase();
+    var steamGridDbApiUrl = '$_steamGridDbApiUrl/$imageType/game/$id';
+    var apiKey = config.steamGridDbApiKey;
+
+    if(apiKey.isEmpty) {
+      return Future.value(Left(ErrorInvalidArgument('SteamGridDB API key is not configured')));
+    }
+
+    var response = await http.get(
+      Uri.parse(steamGridDbApiUrl),
+      headers: {
+        'Authorization': 'Bearer $apiKey',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      try {
+        final Map<String, dynamic> body = jsonDecode(response.body) as Map<String, dynamic>;
+        if (body.containsKey('success') && body['success'] != true) {
+          return Future.value(Left(ErrorHttpRequest('SteamGridDB returned unsuccessful response', response.statusCode)));
+        }
+
+        if (body['data'] is! List) {
+          return Future.value(Left(ErrorHttpRequest('Unexpected SteamGridDB response format', response.statusCode)));
+        }
+
+        final data = body['data'] as List<dynamic>;
+        if (data.isEmpty) {
+          return Future.value(Left(ErrorNotFound('No images found for SteamGrid id $id')));
+        }
+
+        final first = data[0];
+        if (first is Map<String, dynamic>) {
+          // Prefer `url`, fallback to `thumb`
+          final url = (first['url'] is String && (first['url'] as String).isNotEmpty)
+              ? first['url'] as String
+              : (first['thumb'] is String ? first['thumb'] as String : '');
+
+          if (url.isNotEmpty) {
+            return Future.value(Right(url));
+          }
+        }
+
+        return Future.value(Left(ErrorNotFound('No valid image URL found for SteamGrid id $id')));
+      } catch (e) {
+        return Future.value(Left(ErrorHttpRequest('Failed to parse SteamGridDB image response: $e', response.statusCode)));
+      }
+    } else {
+      return Future.value(Left(ErrorHttpRequest('Failed to get SteamGrid by id: ${response.body}', response.statusCode)));
     }
   }
 }
