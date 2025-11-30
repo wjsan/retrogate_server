@@ -18,6 +18,13 @@ class BinaryReader {
     return value;
   }
 
+  int readUInt32() {
+    if (_pos + 4 > _data.length) throw RangeError('BinaryReader: end of buffer');
+    final value = ByteData.sublistView(_data, _pos, _pos + 4).getUint32(0, Endian.little);
+    _pos += 4;
+    return value;
+  }
+
   Uint8List readBytes(int count) {
     if (_pos + count > _data.length) throw RangeError('BinaryReader: end of buffer');
     final slice = _data.sublist(_pos, _pos + count);
