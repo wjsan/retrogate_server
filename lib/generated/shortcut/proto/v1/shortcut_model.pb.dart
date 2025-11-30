@@ -32,9 +32,6 @@ class ShortcutModel extends $pb.GeneratedMessage {
     $core.int? lastPlayTime,
     $core.String? flatpakAppId,
     $core.String? sortAs,
-    $core.String? imageHeroUrl,
-    $core.String? imagePosterUrl,
-    $core.String? imageLogoUrl,
   }) {
     final $result = create();
     if (appId != null) {
@@ -88,15 +85,6 @@ class ShortcutModel extends $pb.GeneratedMessage {
     if (sortAs != null) {
       $result.sortAs = sortAs;
     }
-    if (imageHeroUrl != null) {
-      $result.imageHeroUrl = imageHeroUrl;
-    }
-    if (imagePosterUrl != null) {
-      $result.imagePosterUrl = imagePosterUrl;
-    }
-    if (imageLogoUrl != null) {
-      $result.imageLogoUrl = imageLogoUrl;
-    }
     return $result;
   }
   ShortcutModel._() : super();
@@ -121,9 +109,6 @@ class ShortcutModel extends $pb.GeneratedMessage {
     ..a<$core.int>(15, _omitFieldNames ? '' : 'lastPlayTime', $pb.PbFieldType.OU3)
     ..aOS(16, _omitFieldNames ? '' : 'flatpakAppId')
     ..aOS(17, _omitFieldNames ? '' : 'sortAs')
-    ..aOS(18, _omitFieldNames ? '' : 'imageHeroUrl')
-    ..aOS(19, _omitFieldNames ? '' : 'imagePosterUrl')
-    ..aOS(20, _omitFieldNames ? '' : 'imageLogoUrl')
     ..hasRequiredFields = false
   ;
 
@@ -300,33 +285,6 @@ class ShortcutModel extends $pb.GeneratedMessage {
   $core.bool hasSortAs() => $_has(16);
   @$pb.TagNumber(17)
   void clearSortAs() => clearField(17);
-
-  @$pb.TagNumber(18)
-  $core.String get imageHeroUrl => $_getSZ(17);
-  @$pb.TagNumber(18)
-  set imageHeroUrl($core.String v) { $_setString(17, v); }
-  @$pb.TagNumber(18)
-  $core.bool hasImageHeroUrl() => $_has(17);
-  @$pb.TagNumber(18)
-  void clearImageHeroUrl() => clearField(18);
-
-  @$pb.TagNumber(19)
-  $core.String get imagePosterUrl => $_getSZ(18);
-  @$pb.TagNumber(19)
-  set imagePosterUrl($core.String v) { $_setString(18, v); }
-  @$pb.TagNumber(19)
-  $core.bool hasImagePosterUrl() => $_has(18);
-  @$pb.TagNumber(19)
-  void clearImagePosterUrl() => clearField(19);
-
-  @$pb.TagNumber(20)
-  $core.String get imageLogoUrl => $_getSZ(19);
-  @$pb.TagNumber(20)
-  set imageLogoUrl($core.String v) { $_setString(19, v); }
-  @$pb.TagNumber(20)
-  $core.bool hasImageLogoUrl() => $_has(19);
-  @$pb.TagNumber(20)
-  void clearImageLogoUrl() => clearField(20);
 }
 
 

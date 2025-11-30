@@ -34,9 +34,6 @@ const ShortcutModel$json = {
     {'1': 'last_play_time', '3': 15, '4': 1, '5': 13, '10': 'lastPlayTime'},
     {'1': 'flatpak_app_id', '3': 16, '4': 1, '5': 9, '10': 'flatpakAppId'},
     {'1': 'sort_as', '3': 17, '4': 1, '5': 9, '10': 'sortAs'},
-    {'1': 'image_hero_url', '3': 18, '4': 1, '5': 9, '10': 'imageHeroUrl'},
-    {'1': 'image_poster_url', '3': 19, '4': 1, '5': 9, '10': 'imagePosterUrl'},
-    {'1': 'image_logo_url', '3': 20, '4': 1, '5': 9, '10': 'imageLogoUrl'},
   ],
 };
 
@@ -52,7 +49,5 @@ final $typed_data.Uint8List shortcutModelDescriptor = $convert.base64Decode(
     '9pZBgNIAEoCVIMZGV2a2l0R2FtZUlkEjMKFmRldmtpdF9vdmVycmlkZV9hcHBfaWQYDiABKA1S'
     'E2RldmtpdE92ZXJyaWRlQXBwSWQSJAoObGFzdF9wbGF5X3RpbWUYDyABKA1SDGxhc3RQbGF5VG'
     'ltZRIkCg5mbGF0cGFrX2FwcF9pZBgQIAEoCVIMZmxhdHBha0FwcElkEhcKB3NvcnRfYXMYESAB'
-    'KAlSBnNvcnRBcxIkCg5pbWFnZV9oZXJvX3VybBgSIAEoCVIMaW1hZ2VIZXJvVXJsEigKEGltYW'
-    'dlX3Bvc3Rlcl91cmwYEyABKAlSDmltYWdlUG9zdGVyVXJsEiQKDmltYWdlX2xvZ29fdXJsGBQg'
-    'ASgJUgxpbWFnZUxvZ29Vcmw=');
+    'KAlSBnNvcnRBcw==');
 

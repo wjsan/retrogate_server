@@ -92,10 +92,9 @@ class ShortcutRepositoryImpl implements ShortcutRepository {
       final type = reader.readByte();
       if (type == 0x08) break; // end of root dict
 
-      final key = _readNullTerminatedString(reader);
       if (type != 0x00) {
         return Left(ErrorInvalidFormat(
-            "Expected nested dictionary for shortcut entry, got type 0x${type.toRadixString(16)} for key '$key'"));
+            "Expected nested dictionary for shortcut entry, got type 0x${type.toRadixString(16)}"));
       }
 
       final shortcut = _parseShortcut(reader);
@@ -148,7 +147,8 @@ class ShortcutRepositoryImpl implements ShortcutRepository {
   static ShortcutModel _parseShortcut(BinaryReader reader) {
     final sc = ShortcutModel();
 
-    _readNullTerminatedString(reader);
+    var index = _readNullTerminatedString(reader);
+    print('Parsing shortcut index: $index');
 
     while (true) {
       final type = reader.readByte();
@@ -171,7 +171,7 @@ class ShortcutRepositoryImpl implements ShortcutRepository {
           _assignString(sc, k, val);
           break;
         case 0x02: // int32
-          final intval = reader.readInt32();
+          final intval = reader.readUInt32();
           _assignInt(sc, k, intval);
           break;
         default:
@@ -379,9 +379,6 @@ class ShortcutRepositoryImpl implements ShortcutRepository {
     writeIntField('lastplaytime', sc.hasLastPlayTime() ? sc.lastPlayTime : null);
     writeStringField('flatpakappid', sc.hasFlatpakAppId() ? sc.flatpakAppId : null);
     writeStringField('sortas', sc.hasSortAs() ? sc.sortAs : null);
-    writeStringField('imageherourl', sc.hasImageHeroUrl() ? sc.imageHeroUrl : null);
-    writeStringField('imageposterurl', sc.hasImagePosterUrl() ? sc.imagePosterUrl : null);
-    writeStringField('imagelogourl', sc.hasImageLogoUrl() ? sc.imageLogoUrl : null);
 
     // Note: Do NOT write an end marker here - caller writes 0x08 after adding these bytes
     return b.toBytes();
