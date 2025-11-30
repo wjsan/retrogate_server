@@ -6,6 +6,7 @@ import 'package:retrogate_server/core/errors/error_base.dart';
 import 'package:retrogate_server/core/errors/errors.dart';
 import 'package:retrogate_server/generated/game/proto/v1/game_model.pb.dart';
 import 'package:retrogate_server/modules/game/domain/repository/game_repository.dart';
+import 'package:retrogate_server/modules/shortcut/infra/repository/shortcut_repository_impl.dart';
 
 class GameRepositoryImpl implements GameRepository {
   final String _filePath;
@@ -18,8 +19,12 @@ class GameRepositoryImpl implements GameRepository {
     return result.fold(
       (error) => Left(error),
       (games) async {
-        var newId = games.isEmpty ? 1 : games.map((g) => int.parse(g.id)).reduce((a, b) => a > b ? a : b) + 1;
-        game.id = newId.toString();
+        if(game.id.isEmpty) {
+          game.id = ShortcutRepositoryImpl.generateAppId(game.executablePath, game.name).toString();
+        }
+        if(games.any((g) => g.id == game.id)) {
+          return Left(ErrorAlreadyExists('Game with the same id already exists'));
+        }
         games.add(game);
         await _writeToFile(_filePath, games);
         return Right(game);
