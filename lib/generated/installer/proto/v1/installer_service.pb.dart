@@ -18,18 +18,10 @@ import 'installer_event_model.pb.dart' as $1;
 class InstallRequest extends $pb.GeneratedMessage {
   factory InstallRequest({
     $core.String? gameId,
-    $core.bool? replace,
-    $core.bool? restartSteam,
   }) {
     final $result = create();
     if (gameId != null) {
       $result.gameId = gameId;
-    }
-    if (replace != null) {
-      $result.replace = replace;
-    }
-    if (restartSteam != null) {
-      $result.restartSteam = restartSteam;
     }
     return $result;
   }
@@ -39,8 +31,6 @@ class InstallRequest extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'InstallRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'installer.proto.v1'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'gameId')
-    ..aOB(2, _omitFieldNames ? '' : 'replace')
-    ..aOB(3, _omitFieldNames ? '' : 'restartSteam')
     ..hasRequiredFields = false
   ;
 
@@ -73,24 +63,6 @@ class InstallRequest extends $pb.GeneratedMessage {
   $core.bool hasGameId() => $_has(0);
   @$pb.TagNumber(1)
   void clearGameId() => clearField(1);
-
-  @$pb.TagNumber(2)
-  $core.bool get replace => $_getBF(1);
-  @$pb.TagNumber(2)
-  set replace($core.bool v) { $_setBool(1, v); }
-  @$pb.TagNumber(2)
-  $core.bool hasReplace() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearReplace() => clearField(2);
-
-  @$pb.TagNumber(3)
-  $core.bool get restartSteam => $_getBF(2);
-  @$pb.TagNumber(3)
-  set restartSteam($core.bool v) { $_setBool(2, v); }
-  @$pb.TagNumber(3)
-  $core.bool hasRestartSteam() => $_has(2);
-  @$pb.TagNumber(3)
-  void clearRestartSteam() => clearField(3);
 }
 
 class InstallResponse extends $pb.GeneratedMessage {
@@ -146,14 +118,10 @@ class InstallResponse extends $pb.GeneratedMessage {
 class UninstallRequest extends $pb.GeneratedMessage {
   factory UninstallRequest({
     $core.String? gameId,
-    $core.bool? restartSteam,
   }) {
     final $result = create();
     if (gameId != null) {
       $result.gameId = gameId;
-    }
-    if (restartSteam != null) {
-      $result.restartSteam = restartSteam;
     }
     return $result;
   }
@@ -163,7 +131,6 @@ class UninstallRequest extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UninstallRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'installer.proto.v1'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'gameId')
-    ..aOB(2, _omitFieldNames ? '' : 'restartSteam')
     ..hasRequiredFields = false
   ;
 
@@ -196,15 +163,6 @@ class UninstallRequest extends $pb.GeneratedMessage {
   $core.bool hasGameId() => $_has(0);
   @$pb.TagNumber(1)
   void clearGameId() => clearField(1);
-
-  @$pb.TagNumber(2)
-  $core.bool get restartSteam => $_getBF(1);
-  @$pb.TagNumber(2)
-  set restartSteam($core.bool v) { $_setBool(1, v); }
-  @$pb.TagNumber(2)
-  $core.bool hasRestartSteam() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearRestartSteam() => clearField(2);
 }
 
 class UninstallResponse extends $pb.GeneratedMessage {

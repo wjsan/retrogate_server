@@ -49,16 +49,16 @@ class GameModel extends $pb.GeneratedMessage {
       $result.executablePath = executablePath;
     }
     if (heroUrl != null) {
-      $result.imageHeroUrl = heroUrl;
+      $result.heroUrl = heroUrl;
     }
     if (posterUrl != null) {
-      $result.imagePosterUrl = posterUrl;
+      $result.posterUrl = posterUrl;
     }
     if (logoUrl != null) {
-      $result.imageLogoUrl = logoUrl;
+      $result.logoUrl = logoUrl;
     }
     if (iconUrl != null) {
-      $result.imageIconUrl = iconUrl;
+      $result.iconUrl = iconUrl;
     }
     if (installationMethod != null) {
       $result.installationMethod = installationMethod;
@@ -92,10 +92,10 @@ class GameModel extends $pb.GeneratedMessage {
     ..aOS(2, _omitFieldNames ? '' : 'name')
     ..pPS(3, _omitFieldNames ? '' : 'downloadUrls')
     ..aOS(4, _omitFieldNames ? '' : 'executablePath')
-    ..aOS(5, _omitFieldNames ? '' : 'imageHeroUrl')
-    ..aOS(6, _omitFieldNames ? '' : 'imagePosterUrl')
-    ..aOS(7, _omitFieldNames ? '' : 'imageLogoUrl')
-    ..aOS(8, _omitFieldNames ? '' : 'imageIconUrl')
+    ..aOS(5, _omitFieldNames ? '' : 'heroUrl')
+    ..aOS(6, _omitFieldNames ? '' : 'posterUrl')
+    ..aOS(7, _omitFieldNames ? '' : 'logoUrl')
+    ..aOS(8, _omitFieldNames ? '' : 'iconUrl')
     ..e<GameInstallationMethod>(9, _omitFieldNames ? '' : 'installationMethod', $pb.PbFieldType.OE, defaultOrMaker: GameInstallationMethod.GAME_INSTALLATION_METHOD_EXTRACT, valueOf: GameInstallationMethod.valueOf, enumValues: GameInstallationMethod.values)
     ..aOS(10, _omitFieldNames ? '' : 'settingsFile')
     ..e<GamePlayabilityStatus>(11, _omitFieldNames ? '' : 'playabilityStatus', $pb.PbFieldType.OE, defaultOrMaker: GamePlayabilityStatus.GAME_PLAYABILITY_STATUS_UNKNOWN, valueOf: GamePlayabilityStatus.valueOf, enumValues: GamePlayabilityStatus.values)
@@ -158,40 +158,40 @@ class GameModel extends $pb.GeneratedMessage {
   void clearExecutablePath() => clearField(4);
 
   @$pb.TagNumber(5)
-  $core.String get imageHeroUrl => $_getSZ(4);
+  $core.String get heroUrl => $_getSZ(4);
   @$pb.TagNumber(5)
-  set imageHeroUrl($core.String v) { $_setString(4, v); }
+  set heroUrl($core.String v) { $_setString(4, v); }
   @$pb.TagNumber(5)
-  $core.bool hasImageHeroUrl() => $_has(4);
+  $core.bool hasHeroUrl() => $_has(4);
   @$pb.TagNumber(5)
-  void clearImageHeroUrl() => clearField(5);
+  void clearHeroUrl() => clearField(5);
 
   @$pb.TagNumber(6)
-  $core.String get imagePosterUrl => $_getSZ(5);
+  $core.String get posterUrl => $_getSZ(5);
   @$pb.TagNumber(6)
-  set imagePosterUrl($core.String v) { $_setString(5, v); }
+  set posterUrl($core.String v) { $_setString(5, v); }
   @$pb.TagNumber(6)
-  $core.bool hasImagePosterUrl() => $_has(5);
+  $core.bool hasPosterUrl() => $_has(5);
   @$pb.TagNumber(6)
-  void clearImagePosterUrl() => clearField(6);
+  void clearPosterUrl() => clearField(6);
 
   @$pb.TagNumber(7)
-  $core.String get imageLogoUrl => $_getSZ(6);
+  $core.String get logoUrl => $_getSZ(6);
   @$pb.TagNumber(7)
-  set imageLogoUrl($core.String v) { $_setString(6, v); }
+  set logoUrl($core.String v) { $_setString(6, v); }
   @$pb.TagNumber(7)
-  $core.bool hasImageLogoUrl() => $_has(6);
+  $core.bool hasLogoUrl() => $_has(6);
   @$pb.TagNumber(7)
-  void clearImageLogoUrl() => clearField(7);
+  void clearLogoUrl() => clearField(7);
 
   @$pb.TagNumber(8)
-  $core.String get imageIconUrl => $_getSZ(7);
+  $core.String get iconUrl => $_getSZ(7);
   @$pb.TagNumber(8)
-  set imageIconUrl($core.String v) { $_setString(7, v); }
+  set iconUrl($core.String v) { $_setString(7, v); }
   @$pb.TagNumber(8)
-  $core.bool hasImageIconUrl() => $_has(7);
+  $core.bool hasIconUrl() => $_has(7);
   @$pb.TagNumber(8)
-  void clearImageIconUrl() => clearField(8);
+  void clearIconUrl() => clearField(8);
 
   @$pb.TagNumber(9)
   GameInstallationMethod get installationMethod => $_getN(8);

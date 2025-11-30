@@ -18,15 +18,12 @@ const InstallRequest$json = {
   '1': 'InstallRequest',
   '2': [
     {'1': 'game_id', '3': 1, '4': 1, '5': 9, '10': 'gameId'},
-    {'1': 'replace', '3': 2, '4': 1, '5': 8, '10': 'replace'},
-    {'1': 'restart_steam', '3': 3, '4': 1, '5': 8, '10': 'restartSteam'},
   ],
 };
 
 /// Descriptor for `InstallRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List installRequestDescriptor = $convert.base64Decode(
-    'Cg5JbnN0YWxsUmVxdWVzdBIXCgdnYW1lX2lkGAEgASgJUgZnYW1lSWQSGAoHcmVwbGFjZRgCIA'
-    'EoCFIHcmVwbGFjZRIjCg1yZXN0YXJ0X3N0ZWFtGAMgASgIUgxyZXN0YXJ0U3RlYW0=');
+    'Cg5JbnN0YWxsUmVxdWVzdBIXCgdnYW1lX2lkGAEgASgJUgZnYW1lSWQ=');
 
 @$core.Deprecated('Use installResponseDescriptor instead')
 const InstallResponse$json = {
@@ -45,14 +42,12 @@ const UninstallRequest$json = {
   '1': 'UninstallRequest',
   '2': [
     {'1': 'game_id', '3': 1, '4': 1, '5': 9, '10': 'gameId'},
-    {'1': 'restart_steam', '3': 2, '4': 1, '5': 8, '10': 'restartSteam'},
   ],
 };
 
 /// Descriptor for `UninstallRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List uninstallRequestDescriptor = $convert.base64Decode(
-    'ChBVbmluc3RhbGxSZXF1ZXN0EhcKB2dhbWVfaWQYASABKAlSBmdhbWVJZBIjCg1yZXN0YXJ0X3'
-    'N0ZWFtGAIgASgIUgxyZXN0YXJ0U3RlYW0=');
+    'ChBVbmluc3RhbGxSZXF1ZXN0EhcKB2dhbWVfaWQYASABKAlSBmdhbWVJZA==');
 
 @$core.Deprecated('Use uninstallResponseDescriptor instead')
 const UninstallResponse$json = {

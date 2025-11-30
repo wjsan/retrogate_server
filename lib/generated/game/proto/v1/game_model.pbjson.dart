@@ -66,10 +66,10 @@ const GameModel$json = {
     {'1': 'name', '3': 2, '4': 1, '5': 9, '10': 'name'},
     {'1': 'download_urls', '3': 3, '4': 3, '5': 9, '10': 'downloadUrls'},
     {'1': 'executable_path', '3': 4, '4': 1, '5': 9, '10': 'executablePath'},
-    {'1': 'image_hero_url', '3': 5, '4': 1, '5': 9, '10': 'imageHeroUrl'},
-    {'1': 'image_poster_url', '3': 6, '4': 1, '5': 9, '10': 'imagePosterUrl'},
-    {'1': 'image_logo_url', '3': 7, '4': 1, '5': 9, '10': 'imageLogoUrl'},
-    {'1': 'image_icon_url', '3': 8, '4': 1, '5': 9, '10': 'imageIconUrl'},
+    {'1': 'hero_url', '3': 5, '4': 1, '5': 9, '10': 'heroUrl'},
+    {'1': 'poster_url', '3': 6, '4': 1, '5': 9, '10': 'posterUrl'},
+    {'1': 'logo_url', '3': 7, '4': 1, '5': 9, '10': 'logoUrl'},
+    {'1': 'icon_url', '3': 8, '4': 1, '5': 9, '10': 'iconUrl'},
     {'1': 'installation_method', '3': 9, '4': 1, '5': 14, '6': '.game.proto.v1.GameInstallationMethod', '10': 'installationMethod'},
     {'1': 'settings_file', '3': 10, '4': 1, '5': 9, '9': 0, '10': 'settingsFile', '17': true},
     {'1': 'playability_status', '3': 11, '4': 1, '5': 14, '6': '.game.proto.v1.GamePlayabilityStatus', '10': 'playabilityStatus'},
@@ -87,20 +87,20 @@ const GameModel$json = {
 final $typed_data.Uint8List gameModelDescriptor = $convert.base64Decode(
     'CglHYW1lTW9kZWwSDgoCaWQYASABKAlSAmlkEhIKBG5hbWUYAiABKAlSBG5hbWUSIwoNZG93bm'
     'xvYWRfdXJscxgDIAMoCVIMZG93bmxvYWRVcmxzEicKD2V4ZWN1dGFibGVfcGF0aBgEIAEoCVIO'
-    'ZXhlY3V0YWJsZVBhdGgSJAoOaW1hZ2VfaGVyb191cmwYBSABKAlSDGltYWdlSGVyb1VybBIoCh'
-    'BpbWFnZV9wb3N0ZXJfdXJsGAYgASgJUg5pbWFnZVBvc3RlclVybBIkCg5pbWFnZV9sb2dvX3Vy'
-    'bBgHIAEoCVIMaW1hZ2VMb2dvVXJsEiQKDmltYWdlX2ljb25fdXJsGAggASgJUgxpbWFnZUljb2'
-    '5VcmwSVgoTaW5zdGFsbGF0aW9uX21ldGhvZBgJIAEoDjIlLmdhbWUucHJvdG8udjEuR2FtZUlu'
-    'c3RhbGxhdGlvbk1ldGhvZFISaW5zdGFsbGF0aW9uTWV0aG9kEigKDXNldHRpbmdzX2ZpbGUYCi'
-    'ABKAlIAFIMc2V0dGluZ3NGaWxliAEBElMKEnBsYXlhYmlsaXR5X3N0YXR1cxgLIAEoDjIkLmdh'
-    'bWUucHJvdG8udjEuR2FtZVBsYXlhYmlsaXR5U3RhdHVzUhFwbGF5YWJpbGl0eVN0YXR1cxJaCh'
-    'ZrZXlib2FyZF9tb3VzZV9zdXBwb3J0GAwgASgOMiQuZ2FtZS5wcm90by52MS5HYW1lQ29udHJv'
-    'bGxlclN1cHBvcnRSFGtleWJvYXJkTW91c2VTdXBwb3J0ElwKF3hib3hfY29udHJvbGxlcl9zdX'
-    'Bwb3J0GA0gASgOMiQuZ2FtZS5wcm90by52MS5HYW1lQ29udHJvbGxlclN1cHBvcnRSFXhib3hD'
-    'b250cm9sbGVyU3VwcG9ydBJaChZkczRfY29udHJvbGxlcl9zdXBwb3J0GA4gASgOMiQuZ2FtZS'
-    '5wcm90by52MS5HYW1lQ29udHJvbGxlclN1cHBvcnRSFGRzNENvbnRyb2xsZXJTdXBwb3J0EloK'
-    'FmRzNV9jb250cm9sbGVyX3N1cHBvcnQYDyABKA4yJC5nYW1lLnByb3RvLnYxLkdhbWVDb250cm'
-    '9sbGVyU3VwcG9ydFIUZHM1Q29udHJvbGxlclN1cHBvcnRCEAoOX3NldHRpbmdzX2ZpbGU=');
+    'ZXhlY3V0YWJsZVBhdGgSGQoIaGVyb191cmwYBSABKAlSB2hlcm9VcmwSHQoKcG9zdGVyX3VybB'
+    'gGIAEoCVIJcG9zdGVyVXJsEhkKCGxvZ29fdXJsGAcgASgJUgdsb2dvVXJsEhkKCGljb25fdXJs'
+    'GAggASgJUgdpY29uVXJsElYKE2luc3RhbGxhdGlvbl9tZXRob2QYCSABKA4yJS5nYW1lLnByb3'
+    'RvLnYxLkdhbWVJbnN0YWxsYXRpb25NZXRob2RSEmluc3RhbGxhdGlvbk1ldGhvZBIoCg1zZXR0'
+    'aW5nc19maWxlGAogASgJSABSDHNldHRpbmdzRmlsZYgBARJTChJwbGF5YWJpbGl0eV9zdGF0dX'
+    'MYCyABKA4yJC5nYW1lLnByb3RvLnYxLkdhbWVQbGF5YWJpbGl0eVN0YXR1c1IRcGxheWFiaWxp'
+    'dHlTdGF0dXMSWgoWa2V5Ym9hcmRfbW91c2Vfc3VwcG9ydBgMIAEoDjIkLmdhbWUucHJvdG8udj'
+    'EuR2FtZUNvbnRyb2xsZXJTdXBwb3J0UhRrZXlib2FyZE1vdXNlU3VwcG9ydBJcChd4Ym94X2Nv'
+    'bnRyb2xsZXJfc3VwcG9ydBgNIAEoDjIkLmdhbWUucHJvdG8udjEuR2FtZUNvbnRyb2xsZXJTdX'
+    'Bwb3J0UhV4Ym94Q29udHJvbGxlclN1cHBvcnQSWgoWZHM0X2NvbnRyb2xsZXJfc3VwcG9ydBgO'
+    'IAEoDjIkLmdhbWUucHJvdG8udjEuR2FtZUNvbnRyb2xsZXJTdXBwb3J0UhRkczRDb250cm9sbG'
+    'VyU3VwcG9ydBJaChZkczVfY29udHJvbGxlcl9zdXBwb3J0GA8gASgOMiQuZ2FtZS5wcm90by52'
+    'MS5HYW1lQ29udHJvbGxlclN1cHBvcnRSFGRzNUNvbnRyb2xsZXJTdXBwb3J0QhAKDl9zZXR0aW'
+    '5nc19maWxl');
 
 @$core.Deprecated('Use gameModelListDescriptor instead')
 const GameModelList$json = {
