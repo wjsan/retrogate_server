@@ -23,10 +23,10 @@ class GameModel extends $pb.GeneratedMessage {
     $core.String? name,
     $core.Iterable<$core.String>? downloadUrls,
     $core.String? executablePath,
-    $core.String? imageHeroUrl,
-    $core.String? imagePosterUrl,
-    $core.String? imageLogoUrl,
-    $core.String? imageIconUrl,
+    $core.String? heroUrl,
+    $core.String? posterUrl,
+    $core.String? logoUrl,
+    $core.String? iconUrl,
     GameInstallationMethod? installationMethod,
     $core.String? settingsFile,
     GamePlayabilityStatus? playabilityStatus,
@@ -48,17 +48,17 @@ class GameModel extends $pb.GeneratedMessage {
     if (executablePath != null) {
       $result.executablePath = executablePath;
     }
-    if (imageHeroUrl != null) {
-      $result.imageHeroUrl = imageHeroUrl;
+    if (heroUrl != null) {
+      $result.imageHeroUrl = heroUrl;
     }
-    if (imagePosterUrl != null) {
-      $result.imagePosterUrl = imagePosterUrl;
+    if (posterUrl != null) {
+      $result.imagePosterUrl = posterUrl;
     }
-    if (imageLogoUrl != null) {
-      $result.imageLogoUrl = imageLogoUrl;
+    if (logoUrl != null) {
+      $result.imageLogoUrl = logoUrl;
     }
-    if (imageIconUrl != null) {
-      $result.imageIconUrl = imageIconUrl;
+    if (iconUrl != null) {
+      $result.imageIconUrl = iconUrl;
     }
     if (installationMethod != null) {
       $result.installationMethod = installationMethod;
