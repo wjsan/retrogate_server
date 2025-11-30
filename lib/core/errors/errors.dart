@@ -22,6 +22,11 @@ class ErrorAlreadyExists extends ErrorBase {
       : super(StatusCode.alreadyExists, ErrorCode.ERROR_CODE_ALREADY_EXISTS, message);
 }
 
+class ErrorHttpRequest extends ErrorBase {
+  ErrorHttpRequest(String message, int statusCode)
+      : super(StatusCode.internal, ErrorCode.values.firstWhere((e) => e.value == statusCode, orElse: () => ErrorCode.ERROR_CODE_UNSPECIFIED), message);
+}
+
 class ErrorFileNotFound extends ErrorBase {
   ErrorFileNotFound(String message)
       : super(StatusCode.notFound, ErrorCode.ERROR_CODE_FILE_NOT_FOUND, message);
