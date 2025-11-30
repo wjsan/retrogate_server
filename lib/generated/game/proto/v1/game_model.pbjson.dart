@@ -69,13 +69,14 @@ const GameModel$json = {
     {'1': 'image_hero_url', '3': 5, '4': 1, '5': 9, '10': 'imageHeroUrl'},
     {'1': 'image_poster_url', '3': 6, '4': 1, '5': 9, '10': 'imagePosterUrl'},
     {'1': 'image_logo_url', '3': 7, '4': 1, '5': 9, '10': 'imageLogoUrl'},
-    {'1': 'installation_method', '3': 8, '4': 1, '5': 14, '6': '.game.proto.v1.GameInstallationMethod', '10': 'installationMethod'},
-    {'1': 'settings_file', '3': 9, '4': 1, '5': 9, '9': 0, '10': 'settingsFile', '17': true},
-    {'1': 'playability_status', '3': 10, '4': 1, '5': 14, '6': '.game.proto.v1.GamePlayabilityStatus', '10': 'playabilityStatus'},
-    {'1': 'keyboard_mouse_support', '3': 11, '4': 1, '5': 14, '6': '.game.proto.v1.GameControllerSupport', '10': 'keyboardMouseSupport'},
-    {'1': 'xbox_controller_support', '3': 12, '4': 1, '5': 14, '6': '.game.proto.v1.GameControllerSupport', '10': 'xboxControllerSupport'},
-    {'1': 'ds4_controller_support', '3': 13, '4': 1, '5': 14, '6': '.game.proto.v1.GameControllerSupport', '10': 'ds4ControllerSupport'},
-    {'1': 'ds5_controller_support', '3': 14, '4': 1, '5': 14, '6': '.game.proto.v1.GameControllerSupport', '10': 'ds5ControllerSupport'},
+    {'1': 'image_icon_url', '3': 8, '4': 1, '5': 9, '10': 'imageIconUrl'},
+    {'1': 'installation_method', '3': 9, '4': 1, '5': 14, '6': '.game.proto.v1.GameInstallationMethod', '10': 'installationMethod'},
+    {'1': 'settings_file', '3': 10, '4': 1, '5': 9, '9': 0, '10': 'settingsFile', '17': true},
+    {'1': 'playability_status', '3': 11, '4': 1, '5': 14, '6': '.game.proto.v1.GamePlayabilityStatus', '10': 'playabilityStatus'},
+    {'1': 'keyboard_mouse_support', '3': 12, '4': 1, '5': 14, '6': '.game.proto.v1.GameControllerSupport', '10': 'keyboardMouseSupport'},
+    {'1': 'xbox_controller_support', '3': 13, '4': 1, '5': 14, '6': '.game.proto.v1.GameControllerSupport', '10': 'xboxControllerSupport'},
+    {'1': 'ds4_controller_support', '3': 14, '4': 1, '5': 14, '6': '.game.proto.v1.GameControllerSupport', '10': 'ds4ControllerSupport'},
+    {'1': 'ds5_controller_support', '3': 15, '4': 1, '5': 14, '6': '.game.proto.v1.GameControllerSupport', '10': 'ds5ControllerSupport'},
   ],
   '8': [
     {'1': '_settings_file'},
@@ -88,18 +89,18 @@ final $typed_data.Uint8List gameModelDescriptor = $convert.base64Decode(
     'xvYWRfdXJscxgDIAMoCVIMZG93bmxvYWRVcmxzEicKD2V4ZWN1dGFibGVfcGF0aBgEIAEoCVIO'
     'ZXhlY3V0YWJsZVBhdGgSJAoOaW1hZ2VfaGVyb191cmwYBSABKAlSDGltYWdlSGVyb1VybBIoCh'
     'BpbWFnZV9wb3N0ZXJfdXJsGAYgASgJUg5pbWFnZVBvc3RlclVybBIkCg5pbWFnZV9sb2dvX3Vy'
-    'bBgHIAEoCVIMaW1hZ2VMb2dvVXJsElYKE2luc3RhbGxhdGlvbl9tZXRob2QYCCABKA4yJS5nYW'
-    '1lLnByb3RvLnYxLkdhbWVJbnN0YWxsYXRpb25NZXRob2RSEmluc3RhbGxhdGlvbk1ldGhvZBIo'
-    'Cg1zZXR0aW5nc19maWxlGAkgASgJSABSDHNldHRpbmdzRmlsZYgBARJTChJwbGF5YWJpbGl0eV'
-    '9zdGF0dXMYCiABKA4yJC5nYW1lLnByb3RvLnYxLkdhbWVQbGF5YWJpbGl0eVN0YXR1c1IRcGxh'
-    'eWFiaWxpdHlTdGF0dXMSWgoWa2V5Ym9hcmRfbW91c2Vfc3VwcG9ydBgLIAEoDjIkLmdhbWUucH'
-    'JvdG8udjEuR2FtZUNvbnRyb2xsZXJTdXBwb3J0UhRrZXlib2FyZE1vdXNlU3VwcG9ydBJcChd4'
-    'Ym94X2NvbnRyb2xsZXJfc3VwcG9ydBgMIAEoDjIkLmdhbWUucHJvdG8udjEuR2FtZUNvbnRyb2'
-    'xsZXJTdXBwb3J0UhV4Ym94Q29udHJvbGxlclN1cHBvcnQSWgoWZHM0X2NvbnRyb2xsZXJfc3Vw'
-    'cG9ydBgNIAEoDjIkLmdhbWUucHJvdG8udjEuR2FtZUNvbnRyb2xsZXJTdXBwb3J0UhRkczRDb2'
-    '50cm9sbGVyU3VwcG9ydBJaChZkczVfY29udHJvbGxlcl9zdXBwb3J0GA4gASgOMiQuZ2FtZS5w'
-    'cm90by52MS5HYW1lQ29udHJvbGxlclN1cHBvcnRSFGRzNUNvbnRyb2xsZXJTdXBwb3J0QhAKDl'
-    '9zZXR0aW5nc19maWxl');
+    'bBgHIAEoCVIMaW1hZ2VMb2dvVXJsEiQKDmltYWdlX2ljb25fdXJsGAggASgJUgxpbWFnZUljb2'
+    '5VcmwSVgoTaW5zdGFsbGF0aW9uX21ldGhvZBgJIAEoDjIlLmdhbWUucHJvdG8udjEuR2FtZUlu'
+    'c3RhbGxhdGlvbk1ldGhvZFISaW5zdGFsbGF0aW9uTWV0aG9kEigKDXNldHRpbmdzX2ZpbGUYCi'
+    'ABKAlIAFIMc2V0dGluZ3NGaWxliAEBElMKEnBsYXlhYmlsaXR5X3N0YXR1cxgLIAEoDjIkLmdh'
+    'bWUucHJvdG8udjEuR2FtZVBsYXlhYmlsaXR5U3RhdHVzUhFwbGF5YWJpbGl0eVN0YXR1cxJaCh'
+    'ZrZXlib2FyZF9tb3VzZV9zdXBwb3J0GAwgASgOMiQuZ2FtZS5wcm90by52MS5HYW1lQ29udHJv'
+    'bGxlclN1cHBvcnRSFGtleWJvYXJkTW91c2VTdXBwb3J0ElwKF3hib3hfY29udHJvbGxlcl9zdX'
+    'Bwb3J0GA0gASgOMiQuZ2FtZS5wcm90by52MS5HYW1lQ29udHJvbGxlclN1cHBvcnRSFXhib3hD'
+    'b250cm9sbGVyU3VwcG9ydBJaChZkczRfY29udHJvbGxlcl9zdXBwb3J0GA4gASgOMiQuZ2FtZS'
+    '5wcm90by52MS5HYW1lQ29udHJvbGxlclN1cHBvcnRSFGRzNENvbnRyb2xsZXJTdXBwb3J0EloK'
+    'FmRzNV9jb250cm9sbGVyX3N1cHBvcnQYDyABKA4yJC5nYW1lLnByb3RvLnYxLkdhbWVDb250cm'
+    '9sbGVyU3VwcG9ydFIUZHM1Q29udHJvbGxlclN1cHBvcnRCEAoOX3NldHRpbmdzX2ZpbGU=');
 
 @$core.Deprecated('Use gameModelListDescriptor instead')
 const GameModelList$json = {
