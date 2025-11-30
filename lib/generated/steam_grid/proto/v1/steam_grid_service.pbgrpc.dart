@@ -29,10 +29,6 @@ class SteamGridServiceClient extends $grpc.Client {
       '/steam_grid.proto.v1.SteamGridService/GetById',
       ($0.GetByIdSteamGridRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $0.GetByIdSteamGridResponse.fromBuffer(value));
-  static final _$update = $grpc.ClientMethod<$0.UpdateSteamGridRequest, $0.UpdateSteamGridResponse>(
-      '/steam_grid.proto.v1.SteamGridService/Update',
-      ($0.UpdateSteamGridRequest value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $0.UpdateSteamGridResponse.fromBuffer(value));
   static final _$delete = $grpc.ClientMethod<$0.DeleteSteamGridRequest, $0.DeleteSteamGridResponse>(
       '/steam_grid.proto.v1.SteamGridService/Delete',
       ($0.DeleteSteamGridRequest value) => value.writeToBuffer(),
@@ -54,10 +50,6 @@ class SteamGridServiceClient extends $grpc.Client {
 
   $grpc.ResponseFuture<$0.GetByIdSteamGridResponse> getById($0.GetByIdSteamGridRequest request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$getById, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$0.UpdateSteamGridResponse> update($0.UpdateSteamGridRequest request, {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$update, request, options: options);
   }
 
   $grpc.ResponseFuture<$0.DeleteSteamGridResponse> delete($0.DeleteSteamGridRequest request, {$grpc.CallOptions? options}) {
@@ -88,13 +80,6 @@ abstract class SteamGridServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $0.GetByIdSteamGridRequest.fromBuffer(value),
         ($0.GetByIdSteamGridResponse value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$0.UpdateSteamGridRequest, $0.UpdateSteamGridResponse>(
-        'Update',
-        update_Pre,
-        false,
-        false,
-        ($core.List<$core.int> value) => $0.UpdateSteamGridRequest.fromBuffer(value),
-        ($0.UpdateSteamGridResponse value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$0.DeleteSteamGridRequest, $0.DeleteSteamGridResponse>(
         'Delete',
         delete_Pre,
@@ -119,10 +104,6 @@ abstract class SteamGridServiceBase extends $grpc.Service {
     return getById(call, await request);
   }
 
-  $async.Future<$0.UpdateSteamGridResponse> update_Pre($grpc.ServiceCall call, $async.Future<$0.UpdateSteamGridRequest> request) async {
-    return update(call, await request);
-  }
-
   $async.Future<$0.DeleteSteamGridResponse> delete_Pre($grpc.ServiceCall call, $async.Future<$0.DeleteSteamGridRequest> request) async {
     return delete(call, await request);
   }
@@ -133,7 +114,6 @@ abstract class SteamGridServiceBase extends $grpc.Service {
 
   $async.Future<$0.CreateSteamGridResponse> create($grpc.ServiceCall call, $0.CreateSteamGridRequest request);
   $async.Future<$0.GetByIdSteamGridResponse> getById($grpc.ServiceCall call, $0.GetByIdSteamGridRequest request);
-  $async.Future<$0.UpdateSteamGridResponse> update($grpc.ServiceCall call, $0.UpdateSteamGridRequest request);
   $async.Future<$0.DeleteSteamGridResponse> delete($grpc.ServiceCall call, $0.DeleteSteamGridRequest request);
   $async.Future<$0.SearchByGameNameResponse> searchByGameName($grpc.ServiceCall call, $0.SearchByGameNameRequest request);
 }
